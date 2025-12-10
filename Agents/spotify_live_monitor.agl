@@ -1,0 +1,68 @@
+AGENT SpotifyLiveMonitor {
+
+    STATE Inicio {
+        ACTION Log "=== Iniciando Monitor de Spotify ==="
+        SUCCESS CheckSpotify
+        FAILURE End
+    }
+
+    STATE CheckSpotify {
+        ACTION Log "Consultando cancion actual..."
+        SUCCESS LlamadaApi
+        FAILURE End
+    }
+
+    STATE LlamadaApi {
+        ACTION HttpGetToken "https://api.spotify.com/v1/me/player/currently-playing" "BQAKF-fIdkRuNdZHinPIpcQ_XHft1l8eXlRCNr5zBjEOcu4Ps-zhQk0MDZFbZg27FB1gEI-HJUvpzeA7n3Hg7oPk5_2T9hd9M-amQXU0YIZbQ7QQn8h-LbV-c4FvQpsoeeel5m5_YezVCaTEkfbJm8Z3osUAycNS7PYWQ1Lma4D3ddJwYIZ4qDwXZCpfnSs3brqoalXTm8W0t_L2XKkXbnrX3UFBD-MsZuSblUy-fnQcRzAkps5jCg2rJmoFzCSRmzIaz2In5noPYNsj0fJ5tERaemSMq6He8uvntetYVSecPopJy_iPXK4NpjsF58fKsnwedgR_FU1x5wEWLD0ADu0F8rgkOtQKZqBc2RU68C6pYnrpJJTSfrrBge-eQiCkdR1RAW4O"
+        SUCCESS ValidarRespuesta
+        FAILURE ErrorApi
+    }
+
+    STATE ValidarRespuesta {
+        ACTION SetVar "raw_track_data"
+        SUCCESS GuardarDisco
+        FAILURE ErrorVar
+    }
+
+    STATE GuardarDisco {
+        ACTION WriteBuffer "agentTxtExample/spotify_history.json"
+        SUCCESS EsperarLoop
+        FAILURE ErrorIO
+    }
+
+    STATE EsperarLoop {
+        ACTION Log "Esperando 10 segundos..."
+        SUCCESS DelayLoop
+        FAILURE End
+    }
+
+    STATE DelayLoop {
+        ACTION Delay 10
+        SUCCESS CheckSpotify
+        FAILURE End
+    }
+
+    STATE ErrorApi {
+        ACTION Log "Error: Token invalido o no hay musica sonando."
+        SUCCESS DelayError
+        FAILURE End
+    }
+
+    STATE DelayError {
+        ACTION Delay 10
+        SUCCESS CheckSpotify
+        FAILURE End
+    }
+
+    STATE ErrorVar {
+        ACTION Log "Error de variable."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE ErrorIO {
+        ACTION Log "Error de disco."
+        SUCCESS End
+        FAILURE End
+    }
+}

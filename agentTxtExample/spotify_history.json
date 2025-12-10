@@ -1,0 +1,107 @@
+{
+  "is_playing" : true,
+  "timestamp" : 1765409600280,
+  "context" : {
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/0i7k6NPWziNwk8A43lyyTa"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/0i7k6NPWziNwk8A43lyyTa",
+    "type" : "playlist",
+    "uri" : "spotify:playlist:0i7k6NPWziNwk8A43lyyTa"
+  },
+  "progress_ms" : 44810,
+  "item" : {
+    "album" : {
+      "album_type" : "single",
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/2W3M7XIkEKENCT1LXJ6mdj"
+        },
+        "href" : "https://api.spotify.com/v1/artists/2W3M7XIkEKENCT1LXJ6mdj",
+        "id" : "2W3M7XIkEKENCT1LXJ6mdj",
+        "name" : "Simon Vuarambon",
+        "type" : "artist",
+        "uri" : "spotify:artist:2W3M7XIkEKENCT1LXJ6mdj"
+      }, {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/1zOlzO4RI2iNEcO7JkVWuK"
+        },
+        "href" : "https://api.spotify.com/v1/artists/1zOlzO4RI2iNEcO7JkVWuK",
+        "id" : "1zOlzO4RI2iNEcO7JkVWuK",
+        "name" : "Tantum",
+        "type" : "artist",
+        "uri" : "spotify:artist:1zOlzO4RI2iNEcO7JkVWuK"
+      } ],
+      "available_markets" : [ "AR", "AU", "AT", "BE", "BO", "BR", "BG", "CA", "CL", "CO", "CR", "CY", "CZ", "DK", "DO", "DE", "EC", "EE", "SV", "FI", "FR", "GR", "GT", "HN", "HK", "HU", "IS", "IE", "IT", "LV", "LT", "LU", "MY", "MT", "MX", "NL", "NZ", "NI", "NO", "PA", "PY", "PE", "PH", "PL", "PT", "SG", "SK", "ES", "SE", "CH", "TW", "TR", "UY", "US", "GB", "AD", "LI", "MC", "ID", "JP", "TH", "VN", "RO", "IL", "ZA", "SA", "AE", "BH", "QA", "OM", "KW", "EG", "MA", "DZ", "TN", "LB", "JO", "PS", "IN", "BY", "KZ", "MD", "UA", "AL", "BA", "HR", "ME", "MK", "RS", "SI", "KR", "BD", "PK", "LK", "GH", "KE", "NG", "TZ", "UG", "AG", "AM", "BS", "BB", "BZ", "BT", "BW", "BF", "CV", "CW", "DM", "FJ", "GM", "GE", "GD", "GW", "GY", "HT", "JM", "KI", "LS", "LR", "MW", "MV", "ML", "MH", "FM", "NA", "NR", "NE", "PW", "PG", "PR", "WS", "SM", "ST", "SN", "SC", "SL", "SB", "KN", "LC", "VC", "SR", "TL", "TO", "TT", "TV", "VU", "AZ", "BN", "BI", "KH", "CM", "TD", "KM", "GQ", "SZ", "GA", "GN", "KG", "LA", "MO", "MR", "MN", "NP", "RW", "TG", "UZ", "ZW", "BJ", "MG", "MU", "MZ", "AO", "CI", "DJ", "ZM", "CD", "CG", "IQ", "LY", "TJ", "VE", "ET", "XK" ],
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/album/6lIcpudUrFAAQSFDHSyiZ8"
+      },
+      "href" : "https://api.spotify.com/v1/albums/6lIcpudUrFAAQSFDHSyiZ8",
+      "id" : "6lIcpudUrFAAQSFDHSyiZ8",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://i.scdn.co/image/ab67616d0000b273298d65e2c1925078798cd3cc",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://i.scdn.co/image/ab67616d00001e02298d65e2c1925078798cd3cc",
+        "width" : 300
+      }, {
+        "height" : 64,
+        "url" : "https://i.scdn.co/image/ab67616d00004851298d65e2c1925078798cd3cc",
+        "width" : 64
+      } ],
+      "name" : "Arcade EP",
+      "release_date" : "2024-05-31",
+      "release_date_precision" : "day",
+      "total_tracks" : 3,
+      "type" : "album",
+      "uri" : "spotify:album:6lIcpudUrFAAQSFDHSyiZ8"
+    },
+    "artists" : [ {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/2W3M7XIkEKENCT1LXJ6mdj"
+      },
+      "href" : "https://api.spotify.com/v1/artists/2W3M7XIkEKENCT1LXJ6mdj",
+      "id" : "2W3M7XIkEKENCT1LXJ6mdj",
+      "name" : "Simon Vuarambon",
+      "type" : "artist",
+      "uri" : "spotify:artist:2W3M7XIkEKENCT1LXJ6mdj"
+    }, {
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/artist/1zOlzO4RI2iNEcO7JkVWuK"
+      },
+      "href" : "https://api.spotify.com/v1/artists/1zOlzO4RI2iNEcO7JkVWuK",
+      "id" : "1zOlzO4RI2iNEcO7JkVWuK",
+      "name" : "Tantum",
+      "type" : "artist",
+      "uri" : "spotify:artist:1zOlzO4RI2iNEcO7JkVWuK"
+    } ],
+    "available_markets" : [ "AR", "AU", "AT", "BE", "BO", "BR", "BG", "CA", "CL", "CO", "CR", "CY", "CZ", "DK", "DO", "DE", "EC", "EE", "SV", "FI", "FR", "GR", "GT", "HN", "HK", "HU", "IS", "IE", "IT", "LV", "LT", "LU", "MY", "MT", "MX", "NL", "NZ", "NI", "NO", "PA", "PY", "PE", "PH", "PL", "PT", "SG", "SK", "ES", "SE", "CH", "TW", "TR", "UY", "US", "GB", "AD", "LI", "MC", "ID", "JP", "TH", "VN", "RO", "IL", "ZA", "SA", "AE", "BH", "QA", "OM", "KW", "EG", "MA", "DZ", "TN", "LB", "JO", "PS", "IN", "BY", "KZ", "MD", "UA", "AL", "BA", "HR", "ME", "MK", "RS", "SI", "KR", "BD", "PK", "LK", "GH", "KE", "NG", "TZ", "UG", "AG", "AM", "BS", "BB", "BZ", "BT", "BW", "BF", "CV", "CW", "DM", "FJ", "GM", "GE", "GD", "GW", "GY", "HT", "JM", "KI", "LS", "LR", "MW", "MV", "ML", "MH", "FM", "NA", "NR", "NE", "PW", "PG", "PR", "WS", "SM", "ST", "SN", "SC", "SL", "SB", "KN", "LC", "VC", "SR", "TL", "TO", "TT", "TV", "VU", "AZ", "BN", "BI", "KH", "CM", "TD", "KM", "GQ", "SZ", "GA", "GN", "KG", "LA", "MO", "MR", "MN", "NP", "RW", "TG", "UZ", "ZW", "BJ", "MG", "MU", "MZ", "AO", "CI", "DJ", "ZM", "CD", "CG", "IQ", "LY", "TJ", "VE", "ET", "XK" ],
+    "disc_number" : 1,
+    "duration_ms" : 414500,
+    "explicit" : false,
+    "external_ids" : {
+      "isrc" : "GBEPM2402055"
+    },
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/track/0KSR4afsGD6d9BfeH2JMiL"
+    },
+    "href" : "https://api.spotify.com/v1/tracks/0KSR4afsGD6d9BfeH2JMiL",
+    "id" : "0KSR4afsGD6d9BfeH2JMiL",
+    "is_local" : false,
+    "name" : "Arcade",
+    "popularity" : 27,
+    "preview_url" : null,
+    "track_number" : 1,
+    "type" : "track",
+    "uri" : "spotify:track:0KSR4afsGD6d9BfeH2JMiL"
+  },
+  "currently_playing_type" : "track",
+  "actions" : {
+    "disallows" : {
+      "resuming" : true,
+      "skipping_prev" : true
+    }
+  }
+}
