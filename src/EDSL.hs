@@ -72,3 +72,13 @@ writeBuffer path = runAction (WriteBuffer path)
 
 runDynamicAgent :: StateBuilder ()
 runDynamicAgent = runAction RunDynamicAgent
+
+-- === MANEJO DE VARIABLES ===
+
+-- Guarda el resultado actual en una variable llamada 'name'
+setVar :: String -> StateBuilder ()
+setVar name = runAction (SetVar name)
+
+-- Recupera el valor de 'name' y lo deja listo para ser usado
+getVar :: String -> StateBuilder ()
+getVar name = runAction (GetVar name)

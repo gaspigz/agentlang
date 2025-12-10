@@ -1,4 +1,4 @@
-module Agents where
+module Agents.BasicAgents where
 
 import EDSL
 import AST hiding (onSuccess, onFailure)

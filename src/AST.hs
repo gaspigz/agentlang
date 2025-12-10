@@ -11,6 +11,10 @@ data Action =
     | RunDynamicAgent
     | HttpGet String
     | HttpPost String String
+    | HttpPostMemory String
+    -- Variables (usando libreria containers Map)
+    | SetVar String   
+    | GetVar String
     deriving (Show, Eq)
 
 data Transition = 
