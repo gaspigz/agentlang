@@ -70,8 +70,8 @@ askUserLine prompt = runAction (AskUserLine prompt)
 writeBuffer :: FilePath -> StateBuilder ()
 writeBuffer path = runAction (WriteBuffer path)
 
-runDynamicAgent :: StateBuilder ()
-runDynamicAgent = runAction RunDynamicAgent
+wait :: Int -> StateBuilder ()
+wait seconds = runAction (Delay seconds)
 
 -- === MANEJO DE VARIABLES ===
 

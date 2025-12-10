@@ -10,6 +10,8 @@ import qualified Data.ByteString.Char8 as BS8
 
 import qualified Data.Map as Map
 
+import Control.Concurrent (threadDelay)
+
 type Success = Bool
 type Memory = (String, Map.Map String String)
 
@@ -92,6 +94,13 @@ executeAction (GetVar name) (val, vars) = do
         Just storedVal -> do
             putStrLn $ "Valor recuperado: " ++ show storedVal
             return (True, (storedVal, vars)) -- El valor recuperado pasa a ser el Actual
+            
+-- TIEMPOS:
+executeAction (Delay seconds) mem = do
+    putStrLn $ "--- [WAIT] Esperando " ++ show seconds ++ " segundos... ---"
+    -- threadDelay recibe microsegundos (1 segundo = 1,000,000 microsegundos)
+    threadDelay (seconds * 1000000)
+    return (True, mem)
 
 -- HTTP:
 executeAction (HttpGet url) mem = do

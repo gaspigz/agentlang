@@ -8,13 +8,15 @@ data Action =
     | Log String
     | AskUser String
     | AskUserLine String
-    | RunDynamicAgent
     | HttpGet String
     | HttpPost String String
     | HttpPostMemory String
     -- Variables (usando libreria containers Map)
     | SetVar String   
     | GetVar String
+    -- Tiempos
+    | Delay Int
+    --Ejecutables (.sh)
     deriving (Show, Eq)
 
 data Transition = 
