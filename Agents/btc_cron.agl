@@ -1,0 +1,62 @@
+AGENT BtcCronAgent {
+
+    STATE Inicio {
+        ACTION Log "=== [CRON] Iniciando ciclo de reporte BTC ==="
+        SUCCESS ObtenerPrecio
+        FAILURE ErrorGrave
+    }
+
+    STATE ObtenerPrecio {
+        ACTION HttpGet "https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=coinbase"
+        SUCCESS GuardarVar
+        FAILURE ErrorRed
+    }
+
+    STATE GuardarVar {
+        ACTION SetVar "btc_current"
+        SUCCESS GuardarLocal
+        FAILURE ErrorGrave
+    }
+
+    STATE GuardarLocal {
+        ACTION WriteBuffer "agentTxtExample/btc_live_monitor.json"
+        SUCCESS RecuperarParaEnvio
+        FAILURE ErrorIO
+    }
+
+    STATE RecuperarParaEnvio {
+        ACTION GetVar "btc_current"
+        SUCCESS SubirNube
+        FAILURE ErrorGrave
+    }
+
+    STATE SubirNube {
+        ACTION HttpPostMemory "https://jsonplaceholder.typicode.com/posts"
+        SUCCESS EsperarCiclo
+        FAILURE ErrorRed
+    }
+
+    STATE EsperarCiclo {
+        ACTION Delay 30
+        SUCCESS Inicio
+        FAILURE ErrorGrave
+    }
+
+    STATE ErrorRed {
+        ACTION Delay 10
+        SUCCESS Inicio
+        FAILURE ErrorGrave
+    }
+
+    STATE ErrorIO {
+        ACTION Log "Error de escritura en disco."
+        SUCCESS ErrorGrave
+        FAILURE ErrorGrave
+    }
+
+    STATE ErrorGrave {
+        ACTION Log "Error irrecuperable. El Cron se detiene."
+        SUCCESS End
+        FAILURE End
+    }
+}

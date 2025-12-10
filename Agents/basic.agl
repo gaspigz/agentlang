@@ -1,0 +1,12 @@
+AGENT Basic {
+    STATE Start {
+        ACTION Log "Hola mundo!"
+        SUCCESS State2
+        SUCCESS End
+    }
+    STATE State2 {
+        ACTION Log "Adios"
+        SUCCESS End
+        FAILURE End
+    }
+}

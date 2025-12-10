@@ -1,0 +1,25 @@
+AGENT DynamicWriter {
+    STATE Inicio {
+        ACTION Log "Iniciando sistema de notas."
+        SUCCESS Menu
+        FAILURE End 
+    }
+
+    STATE Menu {
+        ACTION AskUser "¿Desea agregar una nueva linea al archivo?"
+        SUCCESS PedirDato
+        FAILURE End
+    }
+
+    STATE PedirDato {
+        ACTION askUserLine "Escriba su nota: "
+        SUCCESS GuardarDato
+        FAILURE End
+    }
+
+    STATE GuardarDato {
+        ACTION WriteBuffer "agentTxtExample/notas.txt"
+        SUCCESS Menu
+        FAILURE End
+    }
+}

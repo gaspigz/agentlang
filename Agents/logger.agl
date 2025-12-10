@@ -1,0 +1,25 @@
+AGENT logger {
+    STATE Start {
+        ACTION Log "=== Agente iniciado. ==="
+        SUCCESS AskUser
+        FAILURE End
+    }
+
+    STATE AskUser {
+        ACTION AskUser "¿Desea continuar?"
+        SUCCESS LogContinue
+        FAILURE LogStop
+    }
+
+    STATE LogContinue {
+        ACTION Log "El usuario decidió continuar."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE LogStop {
+        ACTION Log "El usuario decidió detenerse."
+        SUCCESS End
+        FAILURE End
+    }
+}

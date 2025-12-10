@@ -1,4 +1,4 @@
-module Agents.BtcReporterAgent where
+module AgentsHaskell.BtcReporterAgent () where
 
 import EDSL
 import AST hiding (onSuccess, onFailure)

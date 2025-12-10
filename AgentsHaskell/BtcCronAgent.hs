@@ -1,4 +1,4 @@
-module Agents.BtcCronAgent where
+module AgentsHaskell.BtcCronAgent () where
 
 import EDSL
 import AST hiding (onSuccess, onFailure)

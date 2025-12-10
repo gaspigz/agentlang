@@ -1,0 +1,80 @@
+AGENT BtcReporterAgent {
+
+    STATE Inicio {
+        ACTION Log "=== Iniciando Bot de Reporte Financiero (BTC) ==="
+        SUCCESS ObtenerPrecio
+        FAILURE End
+    }
+
+    STATE ObtenerPrecio {
+        ACTION HttpGet "https://min-api.cryptocompare.com/data/generateAvg?fsym=BTC&tsym=USD&e=coinbase"
+        SUCCESS GuardarEnVariable
+        FAILURE ErrorRed
+    }
+
+    STATE GuardarEnVariable {
+        ACTION SetVar "raw_btc_data"
+        SUCCESS GuardarLocal
+        FAILURE ErrorIO
+    }
+
+    STATE GuardarLocal {
+        ACTION WriteBuffer "agentTxtExample/btc_snapshot.json"
+        SUCCESS PreguntarUsuario
+        FAILURE ErrorIO
+    }
+
+    STATE PreguntarUsuario {
+        ACTION AskUser "¿Desea subir este reporte al servidor de respaldo remoto?"
+        SUCCESS RecuperarDatos
+        FAILURE FinLocal
+    }
+
+    STATE RecuperarDatos {
+        ACTION GetVar "raw_btc_data"
+        SUCCESS SubirNube
+        FAILURE ErrorVar
+    }
+
+    STATE SubirNube {
+        ACTION HttpPostMemory "https://jsonplaceholder.typicode.com/posts"
+        SUCCESS GuardarRecibo
+        FAILURE ErrorRed
+    }
+
+    STATE GuardarRecibo {
+        ACTION WriteBuffer "agentTxtExample/upload_receipt.txt"
+        SUCCESS FinRemoto
+        FAILURE ErrorIO
+    }
+
+    STATE FinLocal {
+        ACTION Log "Proceso finalizado. El reporte solo se guardó localmente."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE FinRemoto {
+        ACTION Log "Proceso finalizado. Reporte subido y respaldado con éxito."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE ErrorRed {
+        ACTION Log "FALLO CRÍTICO: Error de comunicación HTTP."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE ErrorIO {
+        ACTION Log "FALLO CRÍTICO: No se pudo escribir en el disco."
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE ErrorVar {
+        ACTION Log "FALLO CRÍTICO: Variable no encontrada en memoria."
+        SUCCESS End
+        FAILURE End
+    }
+}

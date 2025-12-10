@@ -1,0 +1,44 @@
+AGENT HttpTestAgent {
+
+    STATE Inicio {
+        ACTION Log "=== Iniciando Test de Conectividad HTTP ==="
+        SUCCESS LogHacerGet
+        FAILURE End
+    }
+
+    STATE LogHacerGet {
+        ACTION Log "1. Ejecutando GET a jsonplaceholder..."
+        SUCCESS EjecutarGet
+        FAILURE End
+    }
+
+    STATE EjecutarGet {
+        ACTION HttpGet "https://jsonplaceholder.typicode.com/posts/1"
+        SUCCESS LogEscribir
+        FAILURE Error
+    }
+
+    STATE LogEscribir {
+        ACTION Log "2. Escribiendo respuesta en 'respuesta_get.txt'..."
+        SUCCESS EscribirArchivo
+        FAILURE End
+    }
+
+    STATE EscribirArchivo {
+        ACTION WriteBuffer "agentTxtExample/respuesta_get.txt"
+        SUCCESS FinExito
+        FAILURE Error
+    }
+
+    STATE FinExito {
+        ACTION Log "=== Test finalizado correctamente ==="
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE Error {
+        ACTION Log "FALLO: Error de comunicación con la API."
+        SUCCESS End
+        FAILURE End
+    }
+}

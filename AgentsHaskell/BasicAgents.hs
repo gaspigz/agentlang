@@ -1,4 +1,4 @@
-module Agents.BasicAgents where
+module AgentsHaskell.BasicAgents () where
 
 import EDSL
 import AST hiding (onSuccess, onFailure)

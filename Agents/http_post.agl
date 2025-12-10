@@ -1,0 +1,44 @@
+AGENT PostExampleAgent {
+
+    STATE Inicio {
+        ACTION Log "=== Iniciando Test de POST HTTP ==="
+        SUCCESS LogHacerPost
+        FAILURE End
+    }
+
+    STATE LogHacerPost {
+        ACTION Log "1. Ejecutando POST a jsonplaceholder..."
+        SUCCESS EjecutarPost
+        FAILURE End
+    }
+
+    STATE EjecutarPost {
+        ACTION HttpPost "https://jsonplaceholder.typicode.com/posts" "{ 'title': 'Agente', 'body': 'Probando POST', 'userId': 99 }"
+        SUCCESS LogGuardar
+        FAILURE Error
+    }
+
+    STATE LogGuardar {
+        ACTION Log "2. Guardando la respuesta en 'respuesta_post.txt'..."
+        SUCCESS GuardarRespuesta
+        FAILURE End
+    }
+
+    STATE GuardarRespuesta {
+        ACTION WriteBuffer "agentTxtExample/respuesta_post.txt"
+        SUCCESS FinExito
+        FAILURE Error
+    }
+
+    STATE FinExito {
+        ACTION Log "=== POST finalizado correctamente ==="
+        SUCCESS End
+        FAILURE End
+    }
+
+    STATE Error {
+        ACTION Log "FALLO: Error de comunicación en POST."
+        SUCCESS End
+        FAILURE End
+    }
+}
