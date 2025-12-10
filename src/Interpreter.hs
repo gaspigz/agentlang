@@ -7,7 +7,7 @@ import Control.Exception (try, SomeException, IOException)
 import Network.HTTP.Simple
 import qualified Data.ByteString.Lazy.Char8 as L8
 import qualified Data.ByteString.Char8 as BS8
-
+import Network.HTTP.Types (hAuthorization)
 import qualified Data.Map as Map
 
 import Control.Concurrent (threadDelay)
@@ -171,7 +171,7 @@ executeAction (HttpGetToken url token) mem = do
     result <- try (do
         initReq <- parseRequest url
         -- Agregamos el Header de Autorización
-        let req = setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)] initReq
+        let req = setRequestHeader hAuthorization [BS8.pack ("Bearer " ++ token)] initReq
         
         response <- httpLBS req
         let code = getResponseStatusCode response
@@ -195,7 +195,7 @@ executeAction (HttpPostToken url token bodyFijo) mem = do
         initReq <- parseRequest url
         let req = setRequestMethod (BS8.pack "POST")
                 $ setRequestBodyLBS (L8.pack bodyFijo)
-                $ setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)]
+                $ setRequestHeader hAuthorization [BS8.pack ("Bearer " ++ token)]
                 $ initReq
         response <- httpLBS req
         return (getResponseStatusCode response, L8.unpack (getResponseBody response))
@@ -218,7 +218,7 @@ executeAction (HttpPostBufferToken url token) mem = do
         initReq <- parseRequest url
         let req = setRequestMethod (BS8.pack "POST")
                 $ setRequestBodyLBS (L8.pack bodyMem)
-                $ setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)]
+                $ setRequestHeader hAuthorization [BS8.pack ("Bearer " ++ token)]
                 $ initReq
         response <- httpLBS req
         return (getResponseStatusCode response, L8.unpack (getResponseBody response))

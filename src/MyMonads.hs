@@ -1,4 +1,4 @@
-module MyMonads where
+module MyMonads  where
 import Data.Monoid
 
 -- ==========================================

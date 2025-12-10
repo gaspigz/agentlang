@@ -26,6 +26,7 @@ executable agent-lang
                      , bytestring
                      , containers
                      , parsec
+                     , http-types
   ghc-options:         -Wall
                        -Wcompat
                        -Widentities
