@@ -1,12 +1,29 @@
 module Main where
 
-import AST hiding (onSuccess, onFailure)
-import EDSL
+import System.Environment (getArgs)
+import System.Exit (exitFailure)
+import Parser (loadAgentFromFile)
 import Interpreter (runAgent)
-import Agents.BasicAgents
-import Agents.BtcReporterAgent
+import AST (Agent) -- Solo necesitamos el tipo
 
 main :: IO ()
 main = do
-    putStrLn "Iniciando Agente: "
-    runAgent btcReporterAgent
+    args <- getArgs
+    case args of
+        [fileName] -> do
+            putStrLn $ "Cargando archivo AGL: " ++ fileName
+            result <- loadAgentFromFile fileName
+            
+            case result of
+                Left err -> do
+                    putStrLn "Error de sintaxis (Parsing):"
+                    print err
+                    exitFailure
+                    
+                Right agentAST -> do
+                    putStrLn "Parseo exitoso. Ejecutando agente..."
+                    runAgent agentAST
+
+        _ -> do
+            putStrLn "Uso correcto: stack run -- <archivo.agl>"
+            putStrLn "Ejemplo: stack run -- script.agl"

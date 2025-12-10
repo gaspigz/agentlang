@@ -18,13 +18,14 @@ extra-source-files:  README.md
 executable agent-lang
   hs-source-dirs:      src
   main-is:             Main.hs
-  other-modules:       AST, EDSL, Interpreter, MyMonads, Agents.BasicAgents, Agents.BtcReporterAgent, Agents.BtcCronAgent
+  other-modules:       AST, EDSL, Interpreter, MyMonads, Parser, Agents.BasicAgents, Agents.BtcReporterAgent, Agents.BtcCronAgent
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , directory
                      , http-conduit
                      , bytestring
                      , containers
+                     , parsec
   ghc-options:         -Wall
                        -Wcompat
                        -Widentities
