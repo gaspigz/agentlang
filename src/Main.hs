@@ -1,10 +1,10 @@
-module Main where
+module Main (main) where
 
 import System.Environment (getArgs)
 import System.Exit (exitFailure)
 import Parser (loadAgentFromFile)
 import Interpreter (runAgent)
-import AST (Agent) -- Solo necesitamos el tipo
+import AST () -- Solo necesitamos el tipo
 
 main :: IO ()
 main = do
