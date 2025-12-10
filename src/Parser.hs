@@ -47,9 +47,11 @@ parseAction = choice
     , parseAskUserLine
     , parseAskUser
     , parseSetVar
-    , parseGetVar
+    , parseHttpGetToken     
     , parseHttpGet
+    , parseHttpPostBufferToken
     , parseHttpPostMemory
+    , parseHttpPostToken
     , parseHttpPost
     , parseDelay
     ]
@@ -129,6 +131,28 @@ parseDelay = do
     _ <- try (symbol "Delay")
     seconds <- integer
     return (Delay seconds)
+
+parseHttpGetToken :: Parser Action
+parseHttpGetToken = do
+    _ <- try (symbol "HttpGetToken")
+    url <- quotedString
+    token <- quotedString
+    return (HttpGetToken url token)
+
+parseHttpPostBufferToken :: Parser Action
+parseHttpPostBufferToken = do
+    _ <- try (symbol "HttpPostBufferToken")
+    url <- quotedString
+    token <- quotedString
+    return (HttpPostBufferToken url token)
+
+parseHttpPostToken :: Parser Action
+parseHttpPostToken = do
+    _ <- try (symbol "HttpPostToken")
+    url <- quotedString
+    token <- quotedString
+    body <- quotedString
+    return (HttpPostToken url token body)
 
 -- 3. PARSEO DE ESTADOS
 -- Estructura: STATE Nombre { ACTION ... SUCCESS ... FAILURE ... }

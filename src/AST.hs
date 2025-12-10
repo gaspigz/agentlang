@@ -11,6 +11,9 @@ data Action =
     | HttpGet String
     | HttpPost String String
     | HttpPostMemory String
+    | HttpGetToken String String         -- url, token
+    | HttpPostToken String String String -- url, token, bodyFijo
+    | HttpPostBufferToken String String  -- url, token (usa memoria como body)
     -- Variables (usando libreria containers Map)
     | SetVar String   
     | GetVar String

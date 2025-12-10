@@ -166,6 +166,72 @@ executeAction (HttpPostMemory url) mem = do
             putStrLn $ "Response Body: " ++ take 500 body ++ "..."
             return (code >= 200 && code < 300, updateVal body mem)
 
+executeAction (HttpGetToken url token) mem = do
+    putStrLn $ "--- [HTTP GET TOKEN] " ++ url ++ " ---"
+    result <- try (do
+        initReq <- parseRequest url
+        -- Agregamos el Header de Autorización
+        let req = setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)] initReq
+        
+        response <- httpLBS req
+        let code = getResponseStatusCode response
+        let body = L8.unpack (getResponseBody response)
+        return (code, body)
+        ) :: IO (Either SomeException (Int, String))
+    
+    case result of
+        Left ex -> do
+            putStrLn $ "Error HTTP Token: " ++ show ex
+            return (False, mem)
+        Right (code, body) -> do
+            putStrLn $ "Status: " ++ show code
+            return (code >= 200 && code < 300, updateVal body mem)
+
+executeAction (HttpPostToken url token bodyFijo) mem = do
+    putStrLn $ "--- [HTTP POST TOKEN] " ++ url ++ " ---"
+    putStrLn $ "Payload: " ++ bodyFijo
+    
+    result <- try (do
+        initReq <- parseRequest url
+        let req = setRequestMethod (BS8.pack "POST")
+                $ setRequestBodyLBS (L8.pack bodyFijo)
+                $ setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)]
+                $ initReq
+        response <- httpLBS req
+        return (getResponseStatusCode response, L8.unpack (getResponseBody response))
+        ) :: IO (Either SomeException (Int, String))
+
+    case result of
+        Left ex -> do
+            putStrLn $ "Error HTTP Token: " ++ show ex
+            return (False, mem)
+        Right (code, body) -> do
+            putStrLn $ "Status: " ++ show code
+            return (code >= 200 && code < 300, updateVal body mem)
+
+executeAction (HttpPostBufferToken url token) mem = do
+    let bodyMem = getCurrentVal mem
+    putStrLn $ "--- [HTTP POST BUFFER TOKEN] " ++ url ++ " ---"
+    putStrLn $ "Payload from Memory: " ++ take 100 bodyMem ++ "..."
+    
+    result <- try (do
+        initReq <- parseRequest url
+        let req = setRequestMethod (BS8.pack "POST")
+                $ setRequestBodyLBS (L8.pack bodyMem)
+                $ setRequestHeader "Authorization" [BS8.pack ("Bearer " ++ token)]
+                $ initReq
+        response <- httpLBS req
+        return (getResponseStatusCode response, L8.unpack (getResponseBody response))
+        ) :: IO (Either SomeException (Int, String))
+
+    case result of
+        Left ex -> do
+            putStrLn $ "Error HTTP Token: " ++ show ex
+            return (False, mem)
+        Right (code, body) -> do
+            putStrLn $ "Status: " ++ show code
+            return (code >= 200 && code < 300, updateVal body mem)
+
 -- Busca un estado por nombre en la lista del agente
 findState :: String -> [AgentState] -> Maybe AgentState
 findState name states = 
