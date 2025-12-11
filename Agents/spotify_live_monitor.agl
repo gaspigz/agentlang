@@ -13,7 +13,7 @@ AGENT SpotifyLiveMonitor {
     }
 
     STATE LlamadaApi {
-        ACTION HttpGetToken "https://api.spotify.com/v1/me/player/currently-playing" "BQAKF-fIdkRuNdZHinPIpcQ_XHft1l8eXlRCNr5zBjEOcu4Ps-zhQk0MDZFbZg27FB1gEI-HJUvpzeA7n3Hg7oPk5_2T9hd9M-amQXU0YIZbQ7QQn8h-LbV-c4FvQpsoeeel5m5_YezVCaTEkfbJm8Z3osUAycNS7PYWQ1Lma4D3ddJwYIZ4qDwXZCpfnSs3brqoalXTm8W0t_L2XKkXbnrX3UFBD-MsZuSblUy-fnQcRzAkps5jCg2rJmoFzCSRmzIaz2In5noPYNsj0fJ5tERaemSMq6He8uvntetYVSecPopJy_iPXK4NpjsF58fKsnwedgR_FU1x5wEWLD0ADu0F8rgkOtQKZqBc2RU68C6pYnrpJJTSfrrBge-eQiCkdR1RAW4O"
+        ACTION HttpGetToken "https://api.spotify.com/v1/me/player/currently-playing" "BQAKF-...1RAW4O"
         SUCCESS ValidarRespuesta
         FAILURE ErrorApi
     }
